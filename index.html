@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+
+<head>
+  <title>earnpat | to do list app</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+</head>
+
+<body>
+
+  <div id="root"></div>
+
+  <script type="text/babel">
+    class App extends React.Component {
+      state = {
+        newTask: '',
+        taskList: [],
+        filterValue: '',
+      }
+
+      addNewTask = () => {
+        if (!this.state.newTask) return
+
+        let newId
+        let newList = [...this.state.taskList]
+
+        if (newList.length <= 0) newId = 1
+        else newId = newList[newList.length - 1].id + 1
+
+        newList.push({
+          id: newId,
+          text: this.state.newTask,
+          done: false
+        })
+
+        this.setState({
+          newTask: '',
+          taskList: newList,
+          filterValue: '',
+        })
+      }
+
+      render() {
+        const { newTask, taskList, filterValue } = this.state
+
+        return (
+          <div className="td-container mt-10">
+            <div className="td-title">To Do List</div>
+            <div className="td-add-container">
+              <div className="td-input-container">
+                <div className="f-c-c td-input-icon"><i className="bi bi-card-checklist"></i></div>
+                <div className="td-input">
+                  <input placeholder="new task"
+                    value={newTask}
+                    onChange={e => this.setState({ newTask: e.target.value })}
+                    onKeyPress={e => e.key.toUpperCase() === 'ENTER' ? this.addNewTask() : null}
+                  />
+                </div>
+              </div>
+              <div class="f-c-c td-btn-add" onClick={() => this.addNewTask()}>Add new task</div>
+            </div>
+
+            <div class="td-filter-container">
+              <div className={`f-c-c ${filterValue === '' ? 'td-filter' : ''}`} onClick={() => this.setState({ filterValue: '' })}>All</div>
+              <div className={`f-c-c ${filterValue === false ? 'td-filter' : ''}`} onClick={() => this.setState({ filterValue: false })}>Done</div>
+              <div className={`f-c-c ${filterValue === true ? 'td-filter' : ''}`} onClick={() => this.setState({ filterValue: true })}>To do</div>
+            </div>
+
+            {taskList.filter(list => list.done !== filterValue).map((list, idx) => <div key={idx} className="td-list-container">
+              <div className={`f-c-s td-list ${list.done ? 'tr-middle-line' : ''}`}>{list.text}</div>
+              <div className={`f-c-c td-icon ${list.done ? 'tr-green' : ''}`}>
+                <i className={`bi ${list.done ? 'bi-check-square-fill' : 'bi-square'}`}
+                  onClick={() => {
+                    let newList = [...taskList]
+                    newList[idx].done = !taskList[idx].done
+                    this.setState({ taskList: newList })
+                  }}
+                ></i>
+              </div>
+              <div className="f-c-c td-icon">
+                <i className="bi bi-trash-fill"
+                  onClick={() => {
+                    let newList = [...taskList]
+                    this.setState({ taskList: newList.filter(nl => nl.id !== list.id) })
+                  }}
+                ></i>
+              </div>
+            </div>
+            )}
+          </div>
+        )
+      }
+    }
+
+    ReactDOM.render(<App />, document.getElementById('root'))
+  </script>
+
+</body>
+
+</html>

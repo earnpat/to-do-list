@@ -1,0 +1,121 @@
+@import url("https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+body {
+  font-family: "Prompt", sans-serif !important;
+  background-color: #fafafa;
+}
+.f-c-c {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.f-c-s {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.td-container {
+  width: 100%;
+  max-width: 600px;
+  margin: 20px auto;
+}
+.td-title {
+  font-size: 40px;
+  font-weight: bolder;
+  text-align: center;
+}
+.td-add-container {
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  padding: 10px;
+}
+.td-input-container {
+  display: grid;
+  grid-template-columns: 30px 1fr;
+  height: 30px;
+}
+.td-input-icon {
+  background-color: #33c3ff;
+  height: 100%;
+  border-radius: 3px 0 0 3px;
+  color: white;
+  font-size: 18px;
+}
+.td-input input {
+  border-radius: 0 3px 3px 0;
+  border: 1px solid #ced4da;
+  border-left: none;
+  height: 30px;
+  transition: 0.3s ease-in-out;
+  padding: 0 8px;
+  width: 100%;
+}
+.td-input input:focus {
+  outline: none;
+  box-shadow: 0 0 3px 0 #cccccc;
+}
+.td-input input:hover {
+  box-shadow: 0 0 3px 0 #cccccc;
+}
+.td-btn-add {
+  height: 30px;
+  width: 100%;
+  margin-top: 10px;
+  transition: 0.3s ease-in-out;
+  background-color: #33c3ff;
+  color: white;
+  text-align: center;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.td-btn-add:hover {
+  background-color: #66d2ff;
+}
+.td-list-container {
+  border: 1px solid #ced4da;
+  border-radius: 3px;
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: 1fr 30px 30px;
+  grid-gap: 10px;
+  padding: 7px 10px;
+}
+.td-list {
+  overflow-wrap: anywhere;
+}
+.td-icon {
+  font-size: 20px;
+  line-height: 0;
+}
+.td-icon i {
+  cursor: pointer;
+}
+.tr-green {
+  color: #45d88e;
+}
+.tr-middle-line {
+  text-decoration-line: line-through;
+  text-decoration-color: #45d88e;
+  text-decoration-thickness: 5px;
+}
+.td-filter-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+  margin-top: 30px;
+}
+.td-filter-container div {
+  height: 30px;
+  transition: 0.3s ease-in-out;
+  background-color: #f00;
+  color: white;
+  text-align: center;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.td-filter-container div:hover {
+  background-color: #f55;
+}
+.td-filter {
+  text-decoration: underline white;
+}
